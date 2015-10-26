@@ -17,12 +17,10 @@
 %{
 
 #include <stdlib.h>
+#include "utf8.h"
 
-static int total, nbytes, code, nbits;
-static struct {
-	char value;
-	int nbits;
-} codes[6];
+int total, nbytes, code, nbits;
+struct code codes[6];
 
 #define	one(n) do { \
 	codes[nbytes].value = yytext[0]; \
@@ -95,76 +93,6 @@ static void
 prepare(void)
 {
 	make_code();
-}
-
-static void
-display_ascii(char c)
-{
-	char v = 0;
-
-	switch (c) {
-	case 000: v = '0'; break;
-	case 007: v = 'a'; break;
-	case 010: v = 'b'; break;
-	case 011: v = 't'; break;
-	case 012: v = 'n'; break;
-	case 013: v = 'v'; break;
-	case 014: v = 'f'; break;
-	case 015: v = 'r'; break;
-	case 040: v = 's'; break;
-	default: break;
-	}
-	if (v != 0) {
-		putchar('\\');
-		putchar(v);
-	} else
-		putchar(c);
-}
-
-static void
-display_raw(void)
-{
-	int i;
-
-	putchar('\'');
-	if (nbytes == 1)
-		display_ascii(codes[0].value);
-	else {
-		for (i = 0; i < nbytes; i++)
-			putchar((unsigned char)codes[i].value);
-	}
-	putchar('\'');
-}
-
-static void
-display_code(void)
-{
-	int i;
-
-	printf("U+");
-	for (i = 0; i < 32 && i < nbits; i += 8)
-		printf("%02X", (unsigned char)(code >> (32 - i - 8)));
-}
-
-static void
-display_hex(void)
-{
-	int i;
-
-	printf("\\x");
-	for (i = 0; i < nbytes; i++)
-		printf("%02X", (unsigned char)codes[i].value);
-}
-
-void
-display(void)
-{
-	display_raw();
-	putchar('\t');
-	display_code();
-	putchar('\t');
-	display_hex();
-	putchar('\n');
 }
 
 int
