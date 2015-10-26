@@ -18,14 +18,11 @@
 
 #include <stdlib.h>
 
-static int nbytes;
-static int total;
+static int total, nbytes, code, nbits;
 static struct {
 	char value;
 	int nbits;
 } codes[6];
-static int code;
-static int nbits;
 
 #define	one(n) do { \
 	codes[nbytes].value = yytext[0]; \
@@ -148,7 +145,7 @@ int
 main(int argc, char *argv[])
 {
 	while (nbytes != -1) {
-		nbytes = total = 0;
+		total = nbytes = code = nbits = 0;
 		yylex();
 		prepare();
 		display();
