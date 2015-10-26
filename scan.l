@@ -22,10 +22,10 @@ static int nbytes;
 static int total;
 static struct {
 	char value;
-	char nbits;
+	int nbits;
 } codes[6];
 static int code;
-static char nbits;
+static int nbits;
 
 #define	one(n) do { \
 	codes[nbytes].value = yytext[0]; \
@@ -50,7 +50,7 @@ static char nbits;
 
 %}
 
-%s	MORE
+%s MORE
 
 b0xxxxxxx		[\x00-\x7f]
 b10xxxxxx		[\x80-\xbf]
