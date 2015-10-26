@@ -26,7 +26,7 @@ make_code(void)
 		int s;
 
 		m = (1 << codes[i].nbits) - 1;
-		v = (unsigned char)(codes[i].value & m);
+		v = codes[i].value & m;
 		s = 32 - nbits - codes[i].nbits;
 		code |= (int)v << s;
 		nbits += codes[i].nbits;
