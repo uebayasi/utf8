@@ -79,8 +79,6 @@ make_code(void)
 {
 	int i;
 
-	code = 0;
-	nbits = 0;
 	for (i = 0; i < nbytes; i++) {
 		unsigned char m, v;
 		int s;
