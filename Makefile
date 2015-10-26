@@ -1,4 +1,6 @@
-OBJS=	utf8.o display.o scan.o
+# utf8
+
+OBJS=	display.o main.o scan.o utf8.o
 
 utf8.exe: ${OBJS}
 	cc -Wall -g -O0 -o utf8.exe ${OBJS} -ll

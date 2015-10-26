@@ -14,34 +14,22 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-%{
-#include <stdio.h>
-#include <stdlib.h>
 #include "utf8.h"
 #include "scan.h"
-%}
 
-%s MORE
+int total, nbytes, code, nbits;
+struct code codes[6];
 
-b0xxxxxxx		[\x00-\x7f]
-b10xxxxxx		[\x80-\xbf]
-b110xxxxx		[\xc2-\xdf]
-b1110xxxx		[\xe0-\xef]
-b11110xxx		[\xf0-\xf7]
-b111110xx		[\xf8-\xfb]
-b1111110x		[\xfc-\xfd]
+int
+main(int argc, char *argv[])
+{
+	while (nbytes != -1) {
+		extern void yylex(void);
 
-%%
-
-{b0xxxxxxx}		more(1, 7);
-{b110xxxxx}		more(2, 5);
-{b1110xxxx}		more(3, 4);
-{b11110xxx}		more(4, 3);
-{b111110xx}		more(5, 2);
-{b1111110x}		more(6, 1);
-<MORE>{b10xxxxxx}	one(6);
-<MORE>.			error();
-.			error();
-<<EOF>>			done();
-
-%%
+		total = nbytes = code = nbits = 0;
+		yylex();
+		prepare();
+		display();
+	}
+	return 0;
+}
