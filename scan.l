@@ -85,13 +85,13 @@ make_code(void)
 	code = 0;
 	nbits = 0;
 	for (i = 0; i < nbytes; i++) {
-		unsigned char v, s;
-		int m;
+		unsigned char m, v;
+		int s;
 
-		v = (unsigned char)(codes[i].value & ((1 << codes[i].nbits) - 1));
+		m = (1 << codes[i].nbits) - 1;
+		v = (unsigned char)(codes[i].value & m);
 		s = 32 - nbits - codes[i].nbits;
-		m = v << s;
-		code |= m;
+		code |= v << s;
 		nbits += codes[i].nbits;
 	}
 }
