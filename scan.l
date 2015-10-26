@@ -97,6 +97,12 @@ make_code(void)
 }
 
 static void
+prepare(void)
+{
+	make_code();
+}
+
+static void
 display_raw(void)
 {
 	int i;
@@ -130,7 +136,6 @@ display_hex(void)
 void
 display(void)
 {
-	make_code();
 	display_raw();
 	putchar('\t');
 	display_code();
@@ -145,6 +150,7 @@ main(int argc, char *argv[])
 	while (nbytes != -1) {
 		nbytes = total = 0;
 		yylex();
+		prepare();
 		display();
 	}
 	return 0;
