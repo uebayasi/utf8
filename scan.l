@@ -86,7 +86,7 @@ make_code(void)
 		m = (1 << codes[i].nbits) - 1;
 		v = (unsigned char)(codes[i].value & m);
 		s = 32 - nbits - codes[i].nbits;
-		code |= v << s;
+		code |= (int)v << s;
 		nbits += codes[i].nbits;
 	}
 }
@@ -98,13 +98,41 @@ prepare(void)
 }
 
 static void
+display_ascii(char c)
+{
+	char v = 0;
+
+	switch (c) {
+	case 000: v = '0'; break;
+	case 007: v = 'a'; break;
+	case 010: v = 'b'; break;
+	case 011: v = 't'; break;
+	case 012: v = 'n'; break;
+	case 013: v = 'v'; break;
+	case 014: v = 'f'; break;
+	case 015: v = 'r'; break;
+	case 040: v = 's'; break;
+	default: break;
+	}
+	if (v != 0) {
+		putchar('\\');
+		putchar(v);
+	} else
+		putchar(c);
+}
+
+static void
 display_raw(void)
 {
 	int i;
 
 	putchar('\'');
-	for (i = 0; i < nbytes; i++)
-		putchar((unsigned char)codes[i].value);
+	if (nbytes == 1)
+		display_ascii(codes[0].value);
+	else {
+		for (i = 0; i < nbytes; i++)
+			putchar((unsigned char)codes[i].value);
+	}
 	putchar('\'');
 }
 
