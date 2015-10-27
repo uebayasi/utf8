@@ -25,11 +25,11 @@ make_ucs4(void)
 		unsigned char m, v;
 		int s;
 
-		m = (1 << codes[i].nbits) - 1;
-		v = codes[i].value & m;
-		s = 32 - ucs4.nbits - codes[i].nbits;
+		m = (1 << utf8.codes[i].nbits) - 1;
+		v = utf8.codes[i].value & m;
+		s = 32 - ucs4.nbits - utf8.codes[i].nbits;
 		ucs4.code |= (int)v << s;
-		ucs4.nbits += codes[i].nbits;
+		ucs4.nbits += utf8.codes[i].nbits;
 	}
 }
 

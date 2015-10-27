@@ -13,7 +13,6 @@ struct ucs4 {
 	int nbits;
 };
 
-extern struct code codes[6];
 extern struct utf8 utf8;
 extern struct ucs4 ucs4;
 

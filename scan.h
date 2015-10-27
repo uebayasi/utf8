@@ -1,6 +1,6 @@
 #define	one(n) do { \
-	codes[utf8.nbytes].value = yytext[0]; \
-	codes[utf8.nbytes].nbits = (n); \
+	utf8.codes[utf8.nbytes].value = yytext[0]; \
+	utf8.codes[utf8.nbytes].nbits = (n); \
 	utf8.nbytes++; \
 	if (utf8.nbytes == utf8.total) { \
 		return utf8.nbytes; \

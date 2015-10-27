@@ -17,15 +17,13 @@
 #include "utf8.h"
 #include "scan.h"
 
-int total, nbytes;
-struct code codes[6];
 struct utf8 utf8;
 struct ucs4 ucs4;
 
 int
 main(int argc, char *argv[])
 {
-	while (nbytes != -1) {
+	while (utf8.nbytes != -1) {
 		extern void yylex(void);
 
 		utf8.total = utf8.nbytes = ucs4.code = ucs4.nbits = 0;
