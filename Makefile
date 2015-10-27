@@ -12,4 +12,4 @@ ${o}: ${o:R}.c ${HDRS}
 .endfor
 
 scan.c: scan.l ${HDRS}
-	flex -oscan.c scan.l
+	flex --prefix=utf8_yy -oscan.c scan.l

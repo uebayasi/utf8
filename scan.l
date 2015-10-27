@@ -49,12 +49,24 @@ b1111110x		[\xfc-\xfd]
 void
 initscan(void)
 {
-	static struct yy_buffer_state scan;
+	static struct yy_buffer_state yy;
 	static char buf[UTF8_SEQ_MAX + 2];
 
-	scan.yy_buf_size = UTF8_SEQ_MAX;
-	scan.yy_ch_buf = buf;
-	scan.yy_is_our_buffer = 1;
-	yy_init_buffer(&scan, stdin);
-	yy_switch_to_buffer(&scan);
+	yy.yy_buf_size = UTF8_SEQ_MAX;
+	yy.yy_ch_buf = buf;
+	yy.yy_is_our_buffer = 1;
+	utf8_yy_init_buffer(&yy, stdin);
+	utf8_yy_switch_to_buffer(&yy);
+}
+
+void
+scan(void)
+{
+	utf8_yylex();
+}
+
+int
+utf8_yywrap(void)
+{
+	return 1;
 }

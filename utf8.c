@@ -16,6 +16,21 @@
 
 #include "utf8.h"
 
+struct utf8 utf8;
+struct ucs4 ucs4;
+
+void
+utf8_reset(void)
+{
+	utf8.total = utf8.nbytes = ucs4.code = ucs4.nbits = 0;
+}
+
+int
+utf8_more(void)
+{
+	return (utf8.nbytes != -1);
+}
+
 void
 make_ucs4(struct ucs4 *c, struct utf8 *t)
 {

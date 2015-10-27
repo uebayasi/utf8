@@ -18,20 +18,13 @@
 #include "scan.h"
 #include "display.h"
 
-struct utf8 utf8;
-struct ucs4 ucs4;
-
 int
 main(int argc, char *argv[])
 {
-	void initscan(void);
-
 	initscan();
-	while (utf8.nbytes != -1) {
-		extern void yylex(void);
-
-		utf8.total = utf8.nbytes = ucs4.code = ucs4.nbits = 0;
-		yylex();
+	while (utf8_more()) {
+		utf8_reset();
+		scan();
 		display();
 	}
 	return 0;
