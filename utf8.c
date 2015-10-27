@@ -32,9 +32,3 @@ make_ucs4(struct ucs4 *c, struct utf8 *t)
 		c->nbits += t->codes[i].nbits;
 	}
 }
-
-void
-prepare(void)
-{
-	make_ucs4(&ucs4, &utf8);
-}
