@@ -17,7 +17,7 @@
 #include "utf8.h"
 
 static void
-make_code(void)
+make_ucs4(void)
 {
 	int i;
 
@@ -27,14 +27,14 @@ make_code(void)
 
 		m = (1 << codes[i].nbits) - 1;
 		v = codes[i].value & m;
-		s = 32 - nbits - codes[i].nbits;
-		code |= (int)v << s;
-		nbits += codes[i].nbits;
+		s = 32 - ucs4.nbits - codes[i].nbits;
+		ucs4.code |= (int)v << s;
+		ucs4.nbits += codes[i].nbits;
 	}
 }
 
 void
 prepare(void)
 {
-	make_code();
+	make_ucs4();
 }

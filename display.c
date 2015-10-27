@@ -58,13 +58,13 @@ display_raw(void)
 }
 
 static void
-display_code(void)
+display_ucs4(void)
 {
 	int i;
 
 	printf("U+");
-	for (i = 0; i < 32 && i < nbits; i += 8)
-		printf("%02X", (unsigned char)(code >> (32 - i - 8)));
+	for (i = 0; i < 32 && i < ucs4.nbits; i += 8)
+		printf("%02X", (unsigned char)(ucs4.code >> (32 - i - 8)));
 }
 
 static void
@@ -82,7 +82,7 @@ display(void)
 {
 	display_raw();
 	putchar('\t');
-	display_code();
+	display_ucs4();
 	putchar('\t');
 	display_hex();
 	putchar('\n');

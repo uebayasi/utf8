@@ -17,8 +17,9 @@
 #include "utf8.h"
 #include "scan.h"
 
-int total, nbytes, code, nbits;
+int total, nbytes;
 struct code codes[6];
+struct ucs4 ucs4;
 
 int
 main(int argc, char *argv[])
@@ -26,7 +27,7 @@ main(int argc, char *argv[])
 	while (nbytes != -1) {
 		extern void yylex(void);
 
-		total = nbytes = code = nbits = 0;
+		total = nbytes = ucs4.code = ucs4.nbits = 0;
 		yylex();
 		prepare();
 		display();
