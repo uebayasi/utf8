@@ -16,5 +16,4 @@ struct ucs4 {
 extern struct utf8 utf8;
 extern struct ucs4 ucs4;
 
-void prepare(void);
-void display(void);
+void make_ucs4(struct ucs4 *, struct utf8 *);

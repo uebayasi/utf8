@@ -16,25 +16,25 @@
 
 #include "utf8.h"
 
-static void
-make_ucs4(void)
+void
+make_ucs4(struct ucs4 *c, struct utf8 *t)
 {
 	int i;
 
-	for (i = 0; i < utf8.nbytes; i++) {
+	for (i = 0; i < t->nbytes; i++) {
 		unsigned char m, v;
 		int s;
 
-		m = (1 << utf8.codes[i].nbits) - 1;
-		v = utf8.codes[i].value & m;
-		s = 32 - ucs4.nbits - utf8.codes[i].nbits;
-		ucs4.code |= (int)v << s;
-		ucs4.nbits += utf8.codes[i].nbits;
+		m = (1 << t->codes[i].nbits) - 1;
+		v = t->codes[i].value & m;
+		s = 32 - c->nbits - t->codes[i].nbits;
+		c->code |= (int)v << s;
+		c->nbits += t->codes[i].nbits;
 	}
 }
 
 void
 prepare(void)
 {
-	make_ucs4();
+	make_ucs4(&ucs4, &utf8);
 }

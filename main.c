@@ -16,6 +16,7 @@
 
 #include "utf8.h"
 #include "scan.h"
+#include "display.h"
 
 struct utf8 utf8;
 struct ucs4 ucs4;
@@ -28,7 +29,7 @@ main(int argc, char *argv[])
 
 		utf8.total = utf8.nbytes = ucs4.code = ucs4.nbits = 0;
 		yylex();
-		prepare();
+		make_ucs4(&ucs4, &utf8);
 		display();
 	}
 	return 0;

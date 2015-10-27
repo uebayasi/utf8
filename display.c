@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utf8.h"
+#include "display.h"
 
 static void
 display_ascii(char c)
