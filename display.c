@@ -78,8 +78,8 @@ display_hex(void)
 		printf("%02X", (unsigned char)utf8.codes[i].value);
 }
 
-void
-display(void)
+static void
+display_valid(void)
 {
 	display_raw();
 	putchar('\t');
@@ -87,4 +87,21 @@ display(void)
 	putchar('\t');
 	display_hex();
 	putchar('\n');
+}
+
+static void
+display_invalid(void)
+{
+	printf("(invalid)\t");
+	display_hex();
+	putchar('\n');
+}
+
+void
+display(void)
+{
+	if (utf8.total >= 1 && utf8.total <= 6 && utf8.nbytes == utf8.total)
+		display_valid();
+	else
+		display_invalid();
 }

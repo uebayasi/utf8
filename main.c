@@ -29,7 +29,9 @@ main(int argc, char *argv[])
 
 		utf8.total = utf8.nbytes = ucs4.code = ucs4.nbits = 0;
 		yylex();
-		make_ucs4(&ucs4, &utf8);
+		if (utf8.total >= 1 && utf8.total <= 6 && utf8.nbytes == utf8.total) {
+			make_ucs4(&ucs4, &utf8);
+		}
 		display();
 	}
 	return 0;
