@@ -1,0 +1,2 @@
+- fix EOF handling
+- detect invalid sequence
