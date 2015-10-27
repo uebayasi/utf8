@@ -48,10 +48,10 @@ display_raw(void)
 	int i;
 
 	putchar('\'');
-	if (nbytes == 1)
+	if (utf8.nbytes == 1)
 		display_ascii(codes[0].value);
 	else {
-		for (i = 0; i < nbytes; i++)
+		for (i = 0; i < utf8.nbytes; i++)
 			putchar((unsigned char)codes[i].value);
 	}
 	putchar('\'');
@@ -73,7 +73,7 @@ display_hex(void)
 	int i;
 
 	printf("\\x");
-	for (i = 0; i < nbytes; i++)
+	for (i = 0; i < utf8.nbytes; i++)
 		printf("%02X", (unsigned char)codes[i].value);
 }
 

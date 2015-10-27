@@ -1,15 +1,15 @@
 #define	one(n) do { \
-	codes[nbytes].value = yytext[0]; \
-	codes[nbytes].nbits = (n); \
-	nbytes++; \
-	if (nbytes == total) { \
-		return nbytes; \
+	codes[utf8.nbytes].value = yytext[0]; \
+	codes[utf8.nbytes].nbits = (n); \
+	utf8.nbytes++; \
+	if (utf8.nbytes == utf8.total) { \
+		return utf8.nbytes; \
 	} else { \
 		BEGIN(MORE); \
 	} \
 } while (0)
 #define	more(t, n) do { \
-	total = (t); \
+	utf8.total = (t); \
 	one(n); \
 } while (0)
 #define	error() do { \

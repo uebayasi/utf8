@@ -21,7 +21,7 @@ make_ucs4(void)
 {
 	int i;
 
-	for (i = 0; i < nbytes; i++) {
+	for (i = 0; i < utf8.nbytes; i++) {
 		unsigned char m, v;
 		int s;
 
