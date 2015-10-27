@@ -100,8 +100,10 @@ display_invalid(void)
 void
 display(void)
 {
-	if (utf8.total >= 1 && utf8.total <= 6 && utf8.nbytes == utf8.total)
+	if (utf8.total >= UTF8_SEQ_MIN && utf8.total <= UTF8_SEQ_MAX &&
+	    utf8.nbytes == utf8.total) {
+		make_ucs4(&ucs4, &utf8);
 		display_valid();
-	else
+	} else
 		display_invalid();
 }

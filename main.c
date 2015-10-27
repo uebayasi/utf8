@@ -24,14 +24,14 @@ struct ucs4 ucs4;
 int
 main(int argc, char *argv[])
 {
+	void initscan(void);
+
+	initscan();
 	while (utf8.nbytes != -1) {
 		extern void yylex(void);
 
 		utf8.total = utf8.nbytes = ucs4.code = ucs4.nbits = 0;
 		yylex();
-		if (utf8.total >= 1 && utf8.total <= 6 && utf8.nbytes == utf8.total) {
-			make_ucs4(&ucs4, &utf8);
-		}
 		display();
 	}
 	return 0;

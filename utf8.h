@@ -1,3 +1,8 @@
+enum {
+	UTF8_SEQ_MIN = 1,
+	UTF8_SEQ_MAX = 6,
+};
+
 struct code {
 	char value;
 	int nbits;
@@ -5,7 +10,7 @@ struct code {
 
 struct utf8 {
 	int total, nbytes;
-	struct code codes[6];
+	struct code codes[UTF8_SEQ_MAX];
 };
 
 struct ucs4 {
