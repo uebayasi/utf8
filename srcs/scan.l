@@ -34,12 +34,10 @@ b1111110x		[\xfc-\xfd]
 %option	nounput
 %option	noinput
 %{
-#ifndef YY_NO_UNPUT
+#undef YY_NO_UNPUT
 #define YY_NO_UNPUT 1
-#endif
-#ifndef YY_NO_INPUT
+#undef YY_NO_INPUT
 #define YY_NO_INPUT 1
-#endif
 %}
 
 %%
