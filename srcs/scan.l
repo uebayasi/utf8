@@ -23,7 +23,7 @@
 
 b0xxxxxxx		[\x00-\x7f]
 b10xxxxxx		[\x80-\xbf]
-b110xxxxx		[\xc2-\xdf]
+b110xxxxx		[\xc0-\xdf]
 b1110xxxx		[\xe0-\xef]
 b11110xxx		[\xf0-\xf7]
 b111110xx		[\xf8-\xfb]
