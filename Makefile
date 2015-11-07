@@ -1,13 +1,14 @@
 # utf8
 
-CC=	cc -Wall -g -O0
-LEX=	flex
+CC=	cc -Wall -Werror -g -O0
+LEX=	gflex
 
 HDRS=	srcs/scan.h srcs/utf8.h
 OBJS=	srcs/display.o srcs/main.o srcs/scan.o srcs/utf8.o
+PROG=	srcs/utf8.exe
 
-srcs/utf8.exe: ${OBJS}
-	${CC} -o srcs/utf8.exe ${OBJS} -ll
+${PROG}: ${OBJS}
+	${CC} -o ${PROG} ${OBJS} -ll
 
 .for o in ${OBJS}
 ${o}: ${o:R}.c ${HDRS}

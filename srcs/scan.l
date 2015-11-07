@@ -21,8 +21,6 @@
 #include "scan.h"
 %}
 
-%s MORE
-
 b0xxxxxxx		[\x00-\x7f]
 b10xxxxxx		[\x80-\xbf]
 b110xxxxx		[\xc2-\xdf]
@@ -30,6 +28,19 @@ b1110xxxx		[\xe0-\xef]
 b11110xxx		[\xf0-\xf7]
 b111110xx		[\xf8-\xfb]
 b1111110x		[\xfc-\xfd]
+
+%state	MORE
+
+%option	nounput
+%option	noinput
+%{
+#ifndef YY_NO_UNPUT
+#define YY_NO_UNPUT 1
+#endif
+#ifndef YY_NO_INPUT
+#define YY_NO_INPUT 1
+#endif
+%}
 
 %%
 
