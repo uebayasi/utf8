@@ -1,15 +1,18 @@
 # utf8
 
-HDRS=	scan.h utf8.h
-OBJS=	display.o main.o scan.o utf8.o
+CC=	cc -Wall -g -O0
+LEX=	flex
 
-utf8.exe: ${OBJS}
-	cc -Wall -g -O0 -o utf8.exe ${OBJS} -ll
+HDRS=	srcs/scan.h srcs/utf8.h
+OBJS=	srcs/display.o srcs/main.o srcs/scan.o srcs/utf8.o
+
+srcs/utf8.exe: ${OBJS}
+	${CC} -o srcs/utf8.exe ${OBJS} -ll
 
 .for o in ${OBJS}
 ${o}: ${o:R}.c ${HDRS}
-	cc -Wall -g -O0 -o ${o} -c ${o:R}.c
+	${CC} -o ${o} -c ${o:R}.c
 .endfor
 
-scan.c: scan.l ${HDRS}
-	flex --prefix=utf8_yy -oscan.c scan.l
+srcs/scan.c: srcs/scan.l ${HDRS}
+	${LEX} --prefix=utf8_yy -osrcs/scan.c srcs/scan.l
