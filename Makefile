@@ -16,3 +16,6 @@ ${o}: ${o:R}.c ${HDRS}
 
 srcs/scan.c: srcs/scan.l ${HDRS}
 	${LEX} --prefix=utf8_yy -osrcs/scan.c srcs/scan.l
+
+clean:
+	rm -f srcs/*.o srcs/*.exe srcs/scan.c
