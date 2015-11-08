@@ -1,7 +1,7 @@
 # utf8
 
-CC=	cc -Wall -Werror -g -O0
-LEX=	gflex
+CC?=	cc -Wall -Werror -g -O0
+LEX?=	flex
 
 HDRS=	srcs/scan.h srcs/utf8.h
 OBJS=	srcs/display.o srcs/main.o srcs/scan.o srcs/utf8.o
